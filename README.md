@@ -23,7 +23,7 @@ Add the following to your Lazy plugin specs (e.g. `~/.config/nvim/lua/plugins/Ch
 
 ```lua
 return {
-  dir = "{PLUGIN DIR}",
+  dir = "{LOCAL PLUGIN DIR}",
   name = "ChemVim",
   config = function()
     require('ChemVim').setup()
