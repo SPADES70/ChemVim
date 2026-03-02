@@ -40,7 +40,7 @@ function M.render_results(result)
 	local unit = result.unit or "REACTOR"
 	table.insert(lines, "")
 	table.insert(lines, "  ⚗️  " .. unit .. " RESULTS")
-	table.insert(lines, " " .. string.rep("--", 36))
+	table.insert(lines, " " .. string.rep("-", 36))
 	table.insert(lines, "")
 	table.insert(lines, string.format(" Conversion (X)    : %.4f (%.1f%%)",
 		result.conversion_X, result.conversion_X * 100))
@@ -58,11 +58,10 @@ function M.render_results(result)
 		
 		table.insert(lines, " Operating Point:")
 		table.insert(lines, " " .. string.rep("-", 36))
-		table.insert(lines, string.format("  Space time (τ)       : %.4f s", result.residence_time_s))
-		    table.insert(lines, string.format("  Reaction rate (r)    : %.4f mol/L·s", rate))
+		table.insert(lines, string.format("  Reaction rate (r)    : %.4f mol/L·s", rate))
 		table.insert(lines, "")
 		table.insert(lines, "  Reactor Diagram:")
-		table.insert(lines, "  " .. string.rep("─", 36))
+		table.insert(lines, "  " .. string.rep("-", 36))
 		table.insert(lines, string.format("       Feed (Ca0=%.2f mol/L)", result.Ca0 or 0))
 		table.insert(lines,               "           │")
 		table.insert(lines,               "           ▼")
@@ -76,13 +75,13 @@ function M.render_results(result)
 	end
 
 	table.insert(lines, " " .. string.rep("-", 36))
-	table.insert(lines, " [q] close    [r] re-run")
+	table.insert(lines, " [q] close ")
 	table.insert(lines, "")
 
 	vim.api.nvim_buf_set_lines(buf, 0, -1, false, lines)
 
 	vim.api.nvim_buf_set_keymap(buf, "n", "q", ":lua require('chemvim.display').close()<CR>",
-		{ no remap = true, silent = true })
+		{ noremap = true, silent = true })
 end
 
 function M.close()
